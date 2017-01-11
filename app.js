@@ -2,8 +2,10 @@ var express = require('express')
 var app = express()
 
 app.get('/', function(req, res) {
-    var ip = req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress;
+    varip = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
 
     var userinformation = {
         'ipaddress': ip.split(',')[0],
