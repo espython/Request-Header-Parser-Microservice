@@ -3,10 +3,9 @@ var app = express()
 
 app.get('/', function(req, res) {
     var ip = req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
-    var info = {
+        req.connection.remoteAddress;
+
+    var userinformation = {
         'ipaddress': ip.split(',')[0],
         'language': req.headers["accept-language"].split(',')[0],
         'software': req.headers['user-agent'].split(') ')[0].split(' (')[1]
